@@ -8,12 +8,20 @@ defmodule Example do
   end
 
   def process(options) do
-    IO.puts "Hello #{options[:name]}"
+    IO.puts "Github #{options[:github]}"
+    IO.puts "Live   #{options[:live]}"
+    IO.puts "Test   #{options[:test]}"
+    IO.puts "About to process ..."
+
+    Dotenv.load
+    IO.puts "FRED: #{System.get_env(:FRED)}"
   end
 
   defp parse_args(args) do
     {options, _, _} = OptionParser.parse(args,
-      switches: [name: :string]
+      switches: [github: :string,
+                   live: :string,
+                   test: :string]
     )
     options
   end
